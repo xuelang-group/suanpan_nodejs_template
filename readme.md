@@ -1,14 +1,18 @@
-### don't fork, use __Use_This_Template__ button
+## 如何使用
+1. 点击 __Use_This_Template__ 按钮创建 github repo
+2. 将代码 git clone 到本地
 
-### 
-edit the docker image name and version
+## 初始化
+1. 执行 npm init 初始化
+
+## 如何构建容器
+### 修改待推送容器名字与标签
 - `nano docker/imagename`
 - `nano docker/version`
 
-### docker build
-- build and push `bash docker/build.sh`
-- build only `bash docker/buildonly.sh`
+### 推荐使用以下脚本构建容器
+- 构建并推送 `bash docker/build.sh`
+- 仅构建不推送 `bash docker/buildonly.sh`
 
-
-### use update.sh
+### 可使用 update.sh 将代码rsync到指定位置并构建
 `bash update.sh`
