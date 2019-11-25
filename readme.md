@@ -1,9 +1,10 @@
 ## 如何使用
 1. 点击 __Use_This_Template__ 按钮创建 github repo
-2. 将代码 git clone 到本地
+2. 将 repo 代码 git clone 到本地
 
 ## 初始化
-1. 执行 npm init 初始化
+1. 执行 `npm init` 初始化
+2. 执行 `npm install suanpan_node_sdk`
 
 ## 如何构建容器
 ### 修改待推送容器名字与标签
