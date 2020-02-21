@@ -1,0 +1,22 @@
+{
+  "name": "suanpan_nodejs_template",
+  "version": "0.1.0",
+  "description": "sample for suanpan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanaltair/suanpan_nodejs_template.git"
+  },
+  "keywords": [
+    "suanpan"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanaltair/suanpan_nodejs_template/issues"
+  },
+  "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme"
+}

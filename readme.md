@@ -5,7 +5,8 @@
 
 ## 初始化
 1. 执行 `npm init` 初始化
-2. 执行 `npm install suanpan_node_sdk`
+2. 执行 `npm install -D suanpan_node_sdk`
+//suanpan_node_sdk 在基础镜像中已经全局安装
 
 ## 如何构建容器
 ### 修改待推送容器名字与标签
