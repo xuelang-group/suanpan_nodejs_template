@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ryanaltair/suanpan_nodejs_template/issues"
   },
-  "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme"
+  "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme",
+  "devDependencies": {
+    "suanpan_node_sdk": "^0.7.0"
+  }
 }
