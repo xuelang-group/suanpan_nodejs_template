@@ -19,7 +19,8 @@
     "url": "https://github.com/ryanaltair/suanpan_nodejs_template/issues"
   },
   "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "suanpan_node_sdk": "^0.7.0"
   }
 }
