@@ -5,11 +5,10 @@ let run = function (cmd) {
         encoding: 'utf8',
     })
     console.log(out)
-    console.log(typeof out)
     return out
 }
 const arch_maps = {
-    arm64: "arm64v8",
+    arm64: "arm64_v8",
     x64: "amd64"
 }
 let env = process.env
