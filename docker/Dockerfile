@@ -1,6 +1,13 @@
-FROM registry.cn-shanghai.aliyuncs.com/shuzhi/nodejs_stream_base:12.15
+ARG ARCH="amd64"
+FROM registry.cn-shanghai.aliyuncs.com/shuzhi-$ARCH/node:12 AS deps
+RUN apt-get update && apt-get install -y jq
+COPY package.json /tmp
+RUN jq '{ dependencies, devDependencies }' < /tmp/package.json > /tmp/deps.json
+
+FROM registry.cn-shanghai.aliyuncs.com/shuzhi-$ARCH/node:12
 WORKDIR /home/app/
-COPY package.json package-lock.json .npmrc ./
+COPY --from=deps /tmp/deps.json ./package.json
+COPY package-lock.json .npmrc ./
 RUN npm install --only=production
 COPY index.js ./
 CMD [ "bash" ]

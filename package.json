@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "syncBuild": "bash tools/update.sh",
-    "docker":"bash docker/build.sh",
-    "buildDockerOnly":"bash docker/buildonly.sh"
+    "docker": "node docker/build.js",
+    "cross_build_docker": "CROSSBUILD=1 node docker/build.js",
+    "buildDocker": "DONTPUSH=1 node docker/build.js"
+  },
+  "suanpan_image_name": {
+    "amd64": "suanpan_sample",
+    "arm64_v8": ""
   },
   "repository": {
     "type": "git",
