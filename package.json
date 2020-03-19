@@ -1,26 +1,23 @@
 {
   "name": "suanpan_nodejs_template",
   "version": "0.1.0",
-  "description": "sample for suanpan",
+  "description": "sample for suanpan nodejs project",
   "main": "index.js",
   "scripts": {
     "syncBuild": "bash tools/update.sh",
-    "docker": "bash docker/build.sh",
-    "buildDockerOnly": "bash docker/buildonly.sh"
+    "docker": "node docker/build.js",
+    "cross_build_docker": "CROSSBUILD=1 node docker/build.js",
+    "buildDocker": "DONTPUSH=1 node docker/build.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ryanaltair/suanpan_nodejs_template.git"
+  "suanpan_image_name": {
+    "amd64": "suanpan_sample",
+    "arm64_v8": ""
   },
   "keywords": [
     "suanpan"
   ],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ryanaltair/suanpan_nodejs_template/issues"
-  },
-  "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme",
   "devDependencies": {},
   "dependencies": {
     "suanpan_node_sdk": "^0.7.1"
