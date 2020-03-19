@@ -1,7 +1,7 @@
 {
   "name": "suanpan_nodejs_template",
   "version": "0.1.0",
-  "description": "sample for suanpan",
+  "description": "sample for suanpan nodejs project",
   "main": "index.js",
   "scripts": {
     "syncBuild": "bash tools/update.sh",
@@ -13,19 +13,11 @@
     "amd64": "suanpan_sample",
     "arm64_v8": ""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ryanaltair/suanpan_nodejs_template.git"
-  },
   "keywords": [
     "suanpan"
   ],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ryanaltair/suanpan_nodejs_template/issues"
-  },
-  "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme",
   "devDependencies": {},
   "dependencies": {
     "suanpan_node_sdk": "^0.7.0"
