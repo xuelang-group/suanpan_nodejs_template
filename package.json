@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "syncBuild": "bash tools/update.sh",
-    "docker":"bash docker/build.sh",
-    "buildDockerOnly":"bash docker/buildonly.sh"
+    "docker": "bash docker/build.sh",
+    "buildDockerOnly": "bash docker/buildonly.sh"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,6 @@
   "homepage": "https://github.com/ryanaltair/suanpan_nodejs_template#readme",
   "devDependencies": {},
   "dependencies": {
-    "suanpan_node_sdk": "^0.7.0"
+    "suanpan_node_sdk": "^0.7.1"
   }
 }
