@@ -15,10 +15,12 @@
 
 ### 修改待推送容器名字与标签
 修改package.json中的suanpan_image_name的子条目
+```json
 {
     amd64:"amd64_image_name_with_namespace",
     arm64_v8:"amd64_image_name_with_namespace"
 }
+```
 
 ## 构建容器
 ### 使用以下npm命令构建容器
@@ -33,4 +35,4 @@
 `npm run syncBuild`
 
 ### 推荐使用npm version 来更新版本号
-强烈简易使用semver
+强烈建议使用semver
