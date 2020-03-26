@@ -26,14 +26,14 @@ const run = function (cmd) {
   })
 }
 const archMaps = {
-  arm64: 'arm64_v8',
+  arm64: 'arm64v8',
   x64: 'amd64'
 }
 const env = process.env
 
-async function buildImage (imageName, tag) {
+async function buildImage (imageName, tag, arch) {
   console.log('build', `${imageName}:${tag} `)
-  await run(`docker build -t ${imageName}:${tag} -f docker/Dockerfile .`)
+  await run(`docker build -t ${imageName}:${tag}  --build-arg ARCH=${arch}  -f docker/Dockerfile .`)
 }
 
 async function pushImage (imageName, tag) {
@@ -53,12 +53,12 @@ async function tagImage (imageName, oldTag, newTag) {
   await run(`docker tag ${imageName}:${oldTag} ${imageName}:${newTag}`)
 }
 
-const images = require('./../package.json').suanpan_imageName
+const images = require('./../package.json').suanpan_image_name
 
-async function work (imageName) {
+async function work (imageName, arch) {
   console.log('building', imageName)
   const version = require('./../package.json').version
-  await buildImage(imageName, version)
+  await buildImage(imageName, version, arch)
   await tagImage(imageName, version, 'latest')
 
   if (env.DONTPUSH) {
@@ -77,7 +77,7 @@ async function main () {
     if (typeof imageName && imageName.length > 0) {
       if (env.CROSS_BUILD || archMaps[process.arch] === arch) {
         // createDockerNameFile(arch,imageName,"latest")
-        await work(imageName)
+        await work(imageName, arch)
       }
     }
   }
