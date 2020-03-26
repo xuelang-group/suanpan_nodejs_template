@@ -18,7 +18,7 @@
 ```json
 {
     amd64:"amd64_image_name_with_namespace",
-    arm64_v8:"amd64_image_name_with_namespace"
+    arm64v8:"arm64v8_image_name_with_namespace"
 }
 ```
 

@@ -11,7 +11,7 @@
   },
   "suanpan_image_name": {
     "amd64": "suanpan_sample",
-    "arm64_v8": ""
+    "arm64v8": ""
   },
   "keywords": [
     "suanpan"
