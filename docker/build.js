@@ -1,60 +1,85 @@
-const exec = require('child_process').execSync;
-let run = function (cmd) {
+const exec = require('child_process').exec
+const run = function (cmd) {
+  return new Promise((resolve, reject) => {
     console.log(`run cmd: ${cmd}`)
-    let out = exec(cmd, {
-        encoding: 'utf8',
+    // const out = exec(cmd, {
+    //   encoding: 'utf8'
+    // })
+    // console.log(out)
+    const p = exec(cmd, {
+      encoding: 'utf8'
+    },
+    function (error, stdout, stderr) {
+      if (error) {
+        console.error('error: ' + error)
+        reject(error)
+      }
+      console.log('cmd end: ' + stdout)
+      console.log('cmd err: ' + stderr)
+      resolve()
     })
-    console.log(out)
-    return out
-}
-const arch_maps = {
-    arm64: "arm64_v8",
-    x64: "amd64"
-}
-let env = process.env
 
-function buildImage(image_name, tag) {
-    run(`docker build -t ${image_name}:${tag} -f docker/Dockerfile .`)
+    p.stdout.on('data', (data) => {
+      console.log(data)
+    })
+    // return out
+  })
 }
+const archMaps = {
+  arm64: 'arm64_v8',
+  x64: 'amd64'
+}
+const env = process.env
 
-function pushImage(image_name, tag) {
-    try {
-        run(`docker push ${image_name}:${tag}`)
-    } catch (error) {
-    }
-
-}
-function createDockerNameFile(arch,image_name, tag){
-    run(`mkdir docker/images`)
-    run(`echo ${image_name}:${tag} > docker/images/${arch}`)
-}
-function tagImage(image_name, old_tag, new_tag) {
-    run(`docker tag ${image_name}:${old_tag} ${image_name}:${new_tag}`)
+async function buildImage (imageName, tag) {
+  console.log('build', `${imageName}:${tag} `)
+  await run(`docker build -t ${imageName}:${tag} -f docker/Dockerfile .`)
 }
 
-let images = require('./../package.json').suanpan_image_name
-
-function work(image_name) {
-    let version = require('./../package.json').version
-    buildImage(image_name, version)
-    tagImage(image_name, version, "latest")
-    
-    if (env.DONTPUSH) {
-        console.log('skip push images')
-    } else {
-        pushImage(image_name, version)
-        pushImage(image_name, "latest")
-    }
+async function pushImage (imageName, tag) {
+  //   try {
+  await run(`docker push ${imageName}:${tag}`).catch((error) => {
+    console.log(error)
+  })
+  //   } catch (error) {}
 }
 
+async function createDockerNameFile (arch, imageName, tag) {
+  await run('mkdir docker/images')
+  await run(`echo ${imageName}:${tag} > docker/images/${arch}`)
+}
+
+async function tagImage (imageName, oldTag, newTag) {
+  await run(`docker tag ${imageName}:${oldTag} ${imageName}:${newTag}`)
+}
+
+const images = require('./../package.json').suanpan_imageName
+
+async function work (imageName) {
+  console.log('building', imageName)
+  const version = require('./../package.json').version
+  await buildImage(imageName, version)
+  await tagImage(imageName, version, 'latest')
+
+  if (env.DONTPUSH) {
+    console.log('skip push images')
+  } else {
+    await pushImage(imageName, version)
+    await pushImage(imageName, 'latest')
+  }
+}
 
 if (env.CROSS_BUILD) console.log('cross build')
-run('pwd')
-for (let [arch, image_name] of Object.entries(images)) {
-    if (typeof image_name && image_name.length > 0) {
-        if (env.CROSS_BUILD || arch_maps[process.arch] === arch) {
-            // createDockerNameFile(arch,image_name,"latest")
-            work(image_name)
-        }
+async function main () {
+  await run('pwd')
+
+  for (const [arch, imageName] of Object.entries(images)) {
+    if (typeof imageName && imageName.length > 0) {
+      if (env.CROSS_BUILD || archMaps[process.arch] === arch) {
+        // createDockerNameFile(arch,imageName,"latest")
+        await work(imageName)
+      }
     }
+  }
 }
+main()
