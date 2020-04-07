@@ -14,8 +14,8 @@ const run = function (cmd) {
         console.error('error: ' + error)
         reject(error)
       }
-      console.log('cmd end: ' + stdout)
-      console.log('cmd err: ' + stderr)
+      if (stdout) console.log('cmd end: ' + stdout)
+      if (stderr) console.log('cmd err: ' + stderr)
       resolve()
     })
 
