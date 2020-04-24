@@ -14,11 +14,17 @@
 - license
 
 ### 修改待推送容器名字与标签
-修改package.json中的suanpan_image_name的子条目
+修改package.json中的suanpan的子条目
 ```json
 {
-    amd64:"amd64_image_name_with_namespace",
-    arm64v8:"arm64v8_image_name_with_namespace"
+"suanpan": {
+    "image_namespace": "registry.cn-shanghai.aliyuncs.com/shuzhi",
+    "image_name": "node_sdk_helloworld",
+    "image_arches": [
+      "amd64",
+      "arm64v8"
+    ]
+  }
 }
 ```
 

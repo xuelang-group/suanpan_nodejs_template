@@ -1,2 +1,5 @@
 docker
 node_modules
+.git
+tools
+.md

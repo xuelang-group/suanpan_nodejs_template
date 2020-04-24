@@ -1,14 +1,13 @@
 echo updateBuildMachine
-host=user@remote
-port=22
-keypath=~/.ssh/id_rsa
+host=builder
+# host=root@127.0.0.1
 project=$(basename $PWD)
 dir_prefixed=~/remote_build
-ssh -i ${keypath} -p ${port} ${host} "mkdir ${dir_prefixed}" 
-rsync --delete -avhe "ssh -i ${keypath} -p ${port}" ./ ${host}:${dir_prefixed}/${project}
+ssh ${host} "mkdir ${dir_prefixed}" 
+rsync --delete -avhe ./ ${host}:${dir_prefixed}/${project}
 # please install node on your remote
 # if node installed, but still find node command not found
 # try edit .bashrc and comment out this line
 # [ -z "$PS1" ] && return
-ssh -i ${keypath} -p ${port} ${host} "cd ${dir_prefixed}/${project}/ && npm run docker"
+ssh ${host} "cd ${dir_prefixed}/${project}/ && npm run docker"
 
