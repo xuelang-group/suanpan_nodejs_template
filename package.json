@@ -10,7 +10,8 @@
     "buildDocker": "DONTPUSH=1 node docker/build.js"
   },
   "suanpan": {
-    "image_namespace": "registry.cn-shanghai.aliyuncs.com/shuzhi",
+    "image_registry": "registry.cn-shanghai.aliyuncs.com",
+    "image_namespace": "shuzhi",
     "image_name": "node_sdk_helloworld",
     "image_arches": [
       "amd64",

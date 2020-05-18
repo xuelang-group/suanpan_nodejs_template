@@ -52,6 +52,7 @@ async function pushImage (imageName, tags) {
 }
 const suanpan = require('./../package.json').suanpan
 const imageName = suanpan.image_name
+const imageRegistry = process.env.suanpan_image_registry || suanpan.image_registry
 const imageNamespace = suanpan.image_namespace
 const imageArches = suanpan.image_arches
 
@@ -66,11 +67,11 @@ async function main () {
   }
   for (const arch of arches) {
     console.log('building platform', archMaps[process.arch], arch)
-    await buildImage(`${imageNamespace}-${arch}/${imageName}`, tagVersions, arch)
+    await buildImage(`${imageRegistry}/${imageNamespace}-${arch}/${imageName}`, tagVersions, arch)
     if (env.DONTPUSH) {
       console.log('skip push images')
     } else {
-      await pushImage(`${imageNamespace}-${arch}/${imageName}`, tagVersions)
+      await pushImage(`${imageRegistry}/${imageNamespace}-${arch}/${imageName}`, tagVersions)
     }
   }
 }
