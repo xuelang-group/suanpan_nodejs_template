@@ -1,5 +1,5 @@
 ## 如何使用
-1. 模版repo https://github.com/ryanaltair/suanpan_nodejs_template/
+1. 模版repo https://github.com/xuelang-group/suanpan_nodejs_template/
 2. 点击 __Use_This_Template__ 按钮创建 github repo
 3. 将 repo 代码 git clone 到本地
 
